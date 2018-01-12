@@ -7,3 +7,4 @@
 - Spezielle Feiertage hinzugefügt
 - Ähnliche Bücher optimiert
 - Responsive optimierungen
+- Bootstrap carousel repariert

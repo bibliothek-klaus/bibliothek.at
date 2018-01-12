@@ -5,6 +5,7 @@
 
 # Special files
 googlecalendarcredential.json
+.Web.config
 
 # User-specific files
 *.suo

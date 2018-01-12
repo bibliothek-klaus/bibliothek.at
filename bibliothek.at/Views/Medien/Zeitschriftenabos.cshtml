@@ -1,0 +1,30 @@
+﻿@model List<bibliothek.at.Models.Magazine>
+@{
+    ViewBag.Title = "Zeitschriftenabos";
+}
+
+<h2>Zeitschriftenabos</h2>
+
+
+<div class="row">
+    <ul class="list-group">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item">
+                @if (item.Website == null)
+                {
+                    @item.Name
+                }
+                else
+                {
+                    <a href="@item.Website">@item.Name</a>
+                }
+                
+                @if (item.PublicationFrequency != null)
+                {
+                    <span class="badge">Erscheinungsweise:@item.PublicationFrequency</span>
+                }
+            </li>
+        }
+    </ul>
+</div>

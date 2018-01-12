@@ -1,0 +1,89 @@
+﻿.content {
+    border-radius: 5px;
+    margin: 0px;
+    background-color: #fff;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+body {
+    background-color: #d4d4d4;
+    background-image: url(/Content/background.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right;
+}
+
+footer {
+    margin-top: 6px;
+    border-radius: 5px;
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #eee;
+    background: rgba(255, 255, 255, 0.8);
+    text-align: left;
+}
+
+.navbar {
+    background-color: #2a70be;
+    border: 1px solid #1c5390;
+}
+
+.navbar-brand {
+    color: #ffffff !important;
+}
+
+.navbar .navbar-toggle {
+    border: 1px solid #ffffff !important;
+}
+
+.navbar .navbar-toggle:hover {
+    background-color: #1c5390 !important;
+}
+
+.navbar .icon-bar {
+    background-color: #ffffff !important;
+}
+
+#navbar li:first-child {
+    border-left: 1px solid #1c5390;
+    border-right: 1px solid #1c5390;
+}
+
+#navbar li {
+    border-right: 1px solid #1c5390;
+}
+
+#navbar li:hover {
+    background-color: #1c5390;
+}
+
+.navbar-nav .dropdown-open .dropdown-toggle {
+    background-color: #1c5390;
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: #1c5390;
+}
+
+.navbar-nav .open a {
+    background-color: #1c5390 !important;
+}
+
+#navbar li a {
+    color: #ffffff !important;
+}
+
+
+.MediaCount {
+    text-align:right;
+}
+
+.equal {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+}

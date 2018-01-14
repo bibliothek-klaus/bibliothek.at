@@ -206,7 +206,7 @@ namespace bibliothek.at.Controllers
 
             if (string.IsNullOrEmpty(item.ImageUrl))
             {
-                var cleanIsbn = item.ISBN.Replace("-", string.Empty);
+                var cleanIsbn = item.ISBN?.Replace("-", string.Empty);
                 item.ImageUrl = $"http://cover.ekz.de/{cleanIsbn}.jpg";
 
                 //item.ImageUrl = $"http://covers.openlibrary.org/b/isbn/{item.ISBN}-L.jpg";

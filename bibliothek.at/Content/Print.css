@@ -1,4 +1,3 @@
-﻿#menucontainer, #GlobalSearch
-{
-    display:none;
+﻿.navbar {
+    display: none;
 }

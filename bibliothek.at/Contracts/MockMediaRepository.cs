@@ -74,5 +74,10 @@ namespace bibliothek.at.Contracts
         {
             return this._mediaItems;
         }
+
+        public List<MediaItem> GetPopularMediaItems()
+        {
+            return this._mediaItems;
+        }
     }
 }

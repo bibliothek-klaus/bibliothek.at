@@ -104,6 +104,7 @@ namespace bibliothek.at.Contracts
             item.ISBN = reader["ISBN"] as string;
             item.Rezension = reader["Rezension"] as string;
             item.Verlag = reader["Verlag"] as string;
+            item.Entlehnungen = (int)reader["Entlehnungen"];
 
             return item;
         }
@@ -220,6 +221,37 @@ namespace bibliothek.at.Contracts
             }
 
             return items;
+        }
+
+        public List<MediaItem> GetPopularMediaItems()
+        {
+            var items = new List<MediaItem>();
+
+            using (var connection = new MySqlConnection(this._connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (var command = new MySqlCommand("SELECT * FROM Medien WHERE ISBN IS NOT NULL AND ISBN <> '' ORDER BY Entlehnungen DESC LIMIT 500", connection))
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var item = this.ReadMediaItem(reader);
+                                items.Add(item);
+                            }
+                        }
+                    }
+                }
+                catch (Exception exception)
+                {
+                }
+            }
+
+            //return items;
+            return items.GroupBy(o => o.MedienArt).Select(o => new { o.Key, Items = o.OrderByDescending(x => x.Entlehnungen).Take(5) }).SelectMany(o => o.Items).ToList();
         }
 
         public MediaItem GetMediaItem(int id)

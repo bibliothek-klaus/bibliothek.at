@@ -277,6 +277,7 @@
     </Content>
     <Content Include="Views\Medien\Detail.cshtml" />
     <Content Include="Views\Medien\Zeitschriftenabos.cshtml" />
+    <Content Include="Views\Medien\Trends.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

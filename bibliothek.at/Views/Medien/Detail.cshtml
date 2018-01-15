@@ -3,35 +3,52 @@
     ViewBag.Title = Model.Sachtitel;
 }
 
-<h2>@Model.Sachtitel</h2>
-
 <div class="row">
     <div class="col-xs-12 col-sm-4">
         <img class="img-responsive" src="@Model.ImageUrl" alt="@Model.Sachtitel" title="@Model.Sachtitel" />
     </div>
-    <div class="col-xs-12 col-sm-8">@Model.Rezension</div>
-    
-    <div class="col-xs-12" style="margin-top:10px;">
-        <table class="table table-bordered">
-            <tr>
-                <th>Verfasser</th>
-                <td>@Model.Verfasser</td>
-            </tr>
-            <tr>
-                <th>Verlag</th>
-                <td>@Model.Verlag</td>
-            </tr>
-            <tr>
-                <th>ISBN</th>
-                <td>@Model.ISBN</td>
-            </tr>
-        </table>
+    <div class="col-xs-12 col-sm-8">
+        <h2>@Model.Sachtitel <small>@Model.Titelzusatz</small></h2>
+
+        @Model.Rezension
+
+        <div style="margin-top:10px;">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Verfasser</th>
+                    <td>@Model.Verfasser</td>
+                </tr>
+                <tr>
+                    <th>Verlag</th>
+                    <td>@Model.Verlag</td>
+                </tr>
+                <tr>
+                    <th>ISBN</th>
+                    <td>@Model.ISBN</td>
+                </tr>
+                <tr>
+                    <th>MedienArt</th>
+                    <td>@Model.MedienArt</td>
+                </tr>
+                <tr>
+                    <th>Systematik</th>
+                    <td>@Model.Systematik</td>
+                </tr>
+                <tr>
+                    <th>Mediennummer</th>
+                    <td>@Model.Id</td>
+                </tr>
+            </table>
+        </div>
+
     </div>
 </div>
 
     @if (Model.SimilarBooks != null)
     {
         <div class="row equal">
+
+            <div class="col-xs-12"><h3>Weiter Vorschläge</h3></div>
 
             @foreach (var item in Model.SimilarBooks.OrderByDescending(o => o.Mediennummer))
             {

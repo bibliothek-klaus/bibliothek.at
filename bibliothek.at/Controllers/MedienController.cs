@@ -209,7 +209,7 @@ namespace bibliothek.at.Controllers
                 var result = this._enhanceMedia.GetDetails(item.ISBN);
                 item.ImageUrl = result.Item1;
 
-                var similarBooks = result.Item2;
+                var similarBooks = result.Item2.Where(o => !string.IsNullOrEmpty(o.Isbn) && !string.IsNullOrEmpty(o.Verfasser)).ToList();
                 var availableMedias = this._mediaRepository.CheckIsbnsAvailable(similarBooks?.Select(o => o.Isbn).ToList());
                 if (availableMedias != null)
                 {

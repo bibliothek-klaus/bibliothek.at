@@ -1,0 +1,37 @@
+﻿@model List<bibliothek.at.Models.MediaItem>
+@{
+    ViewBag.Title = "Trends";
+}
+
+<h2>Trends</h2>
+
+<div class="row equal">
+    @{
+        var lastMediaArt = string.Empty;
+        foreach (var item in Model)
+        {
+            if (lastMediaArt != item.MedienArt)
+            {
+                lastMediaArt = item.MedienArt;
+                <div class="col-xs-12"><h3>Medienart: @item.MedienArt</h3></div>
+            }
+
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="thumbnail">
+                    <a href="/Medien/Detail/@item.Id">
+                        <div class="w-100" style="height:300px; display:block; background-image:url('@item.ImageUrl'); border:1px solid #dddddd; background-repeat:no-repeat; background-size:100%;"></div>
+                    </a>
+                    <div class="caption text-center">
+                        <a href="/Medien/Detail/@item.Id"><h4>@item.Sachtitel <small>@item.Verfasser</small></h4></a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@section scripts {
+<script type="text/javascript">
+    $("h4").fitText(1.2);
+</script>
+}

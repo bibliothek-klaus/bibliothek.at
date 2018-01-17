@@ -47,6 +47,29 @@ namespace bibliothek.at.Controllers
 
             return View(items.ToList());
         }
+
+        public ActionResult Trends()
+        {
+            var items = this._mediaRepository.GetPopularMediaItems();
+
+            foreach (var item in items)
+            {
+                #region Fallback Cover Image
+
+                if (string.IsNullOrEmpty(item.ImageUrl))
+                {
+                    var cleanIsbn = item.ISBN.Replace("-", string.Empty);
+                    item.ImageUrl = $"http://cover.ekz.de/{cleanIsbn}.jpg";
+
+                    //item.ImageUrl = $"http://covers.openlibrary.org/b/isbn/{item.ISBN}-L.jpg";
+                }
+
+                #endregion
+            }
+
+            return View(items);
+        }
+
         public ActionResult Suche()
         {
             return View(new SearchRequest());

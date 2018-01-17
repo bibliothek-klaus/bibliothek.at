@@ -3,100 +3,93 @@
     ViewBag.Title = Model.Sachtitel;
 }
 
-<h2>@Model.Sachtitel</h2>
-
 <div class="row">
-    <div class="col-xs-12 col-sm-4">
+    <div class="col-xs-12 col-sm-4" style="margin-top:20px;">
         <img class="img-responsive" src="@Model.ImageUrl" alt="@Model.Sachtitel" title="@Model.Sachtitel" />
     </div>
-    <div class="col-xs-12 col-sm-8">@Model.Rezension</div>
-    
-    <div class="col-xs-12" style="margin-top:10px;">
-        <table class="table table-bordered">
-            <tr>
-                <th>Verfasser</th>
-                <td>@Model.Verfasser</td>
-            </tr>
-            <tr>
-                <th>Verlag</th>
-                <td>@Model.Verlag</td>
-            </tr>
-            <tr>
-                <th>ISBN</th>
-                <td>@Model.ISBN</td>
-            </tr>
-        </table>
+    <div class="col-xs-12 col-sm-8">
+        <h2>@Model.Sachtitel <small>@Model.Titelzusatz</small></h2>
+
+        @Model.Rezension
+
+        <div style="margin-top:10px;">
+            <table class="table table-bordered">
+                <tr>
+                    <th class="text-right">Verfügbar</th>
+                    <td>@if (Model.Status) {<span>Ja</span> } else { <span>Nein</span>}</td>
+                </tr>
+                <tr>
+                    <th class="col-xs-3 text-right">Verfasser</th>
+                    <td class="col-xs-9">@Model.Verfasser</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Verlag</th>
+                    <td>@Model.Verlag</td>
+                </tr>
+                <tr>
+                    <th class="text-right">ISBN</th>
+                    <td>@Model.ISBN</td>
+                </tr>
+                <tr>
+                    <th class="text-right">MedienArt</th>
+                    <td>@Model.MedienArt</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Systematik</th>
+                    <td>@Model.Systematik</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Mediennummer</th>
+                    <td>@Model.Id</td>
+                </tr>
+            </table>
+        </div>
+
     </div>
 </div>
 
-    @if (Model.SimilarBooks != null)
-    {
-        <div class="row equal">
+@if (Model.SimilarBooks != null)
+{
+    <div class="row equal">
 
-            @foreach (var item in Model.SimilarBooks.OrderByDescending(o => o.Mediennummer))
-            {
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="thumbnail">
-                        <div class="w-100" style="height:280px; display:block; background-image:url('@item.ImageUrl'); background-repeat:no-repeat; background-size:100%;"></div>
-                        <div class="caption text-center">
-                            <h4>@item.Title <small>@item.Verfasser</small></h4>
-                            @if (item.Mediennummer > 0)
-                            {
-                                <a href="/Medien/Detail/@item.Mediennummer" class="btn btn-primary">Details</a>
-                            }
-                            else
-                            {
-                                <a href="@item.Url" class="btn btn-sm btn-danger">Bei Amazon.de kaufen</a>
-                            }
-                        </div>
-                    </div>
-                </div>
+        <div class="col-xs-12"><h3>Weiter Vorschläge</h3></div>
 
-            }
-
-        </div>
-
-
-        @*<table class="table">
-            <tr>
-                <th>Vorschau</th>
-                <th>Titel</th>              
-            </tr>
-            @foreach (var item in Model.SimilarBooks.OrderByDescending(o=>o.Mediennummer))
-            {
-                <tr>
-                    <td>
-                        @if (!string.IsNullOrEmpty(item.ImageUrl))
-                        {
-                            <img class="img-responsive" src="@item.ImageUrl" alt="@item.Title" title="@item.Title" />
-                        }
-                    </td>
-                    <td>
-                        <strong>@item.Title</strong><br />
-                        <br />
+        @foreach (var item in Model.SimilarBooks.OrderByDescending(o => o.Mediennummer))
+        {
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="thumbnail">
+                    <div class="w-100" style="height:280px; display:block; background-image:url('@item.ImageUrl'); background-repeat:no-repeat; background-size:100%;"></div>
+                    <div class="caption text-center">
+                        <h4>@item.Title <small>@item.Verfasser</small></h4>
                         @if (item.Mediennummer > 0)
                         {
-                            <a href="/Medien/Detail/@item.Mediennummer" class="btn btn-default">Details</a>
+                            <a href="/Medien/Detail/@item.Mediennummer" class="btn btn-primary">Details</a>
                         }
                         else
                         {
-                            <a href="@item.Url" class="btn btn-default">Jetzt bei Amazon.de kaufen</a>
+                            <a href="@item.Url" class="btn btn-sm btn-danger">Bei Amazon.de kaufen</a>
                         }
+                    </div>
+                </div>
+            </div>
 
-                        <br />
-                        <br />
-                        <table class="table table-bordered">
-                            <tr>
-                                <th width="80">Verfasser</th>
-                                <td>@item.Verfasser</td>
-                            </tr>
-                            <tr>
-                                <th>ISBN</th>
-                                <td>@item.Isbn</td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            }
-        </table>*@
+        }
+
+    </div>
+}
+
+<script type="application/ld+json">
+    {
+    "@@context": "http://schema.org",
+    "@@type": "WebPage",
+    "mainEntity":{
+        "@@type": "Book",
+        "author": "@Model.Verfasser",
+        "image": "@Model.ImageUrl",
+        "inLanguage": "German",
+        "isbn": "@Model.ISBN",
+        "name": "@Model.Sachtitel @Model.Titelzusatz",
+        "publisher": "@Model.Verlag"
+        }
     }
+</script>

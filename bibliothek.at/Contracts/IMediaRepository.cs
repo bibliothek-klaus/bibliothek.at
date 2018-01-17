@@ -10,5 +10,6 @@ namespace bibliothek.at.Contracts
         List<MediaItem> GetNewMediaItems();
         MediaItem GetMediaItem(int id);
         List<AvailableMediaItem> CheckIsbnsAvailable(List<string> isbns);
+        List<MediaItem> GetPopularMediaItems();
     }
 }

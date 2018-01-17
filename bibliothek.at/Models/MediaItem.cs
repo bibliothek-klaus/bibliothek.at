@@ -14,6 +14,7 @@ namespace bibliothek.at.Models
         public string ISBN { get; set; }
         public string Rezension { get; set; }
         public string Verlag { get; set; }
+        public int Entlehnungen { get; set; }
 
         public string ImageUrl { get; set; }
 

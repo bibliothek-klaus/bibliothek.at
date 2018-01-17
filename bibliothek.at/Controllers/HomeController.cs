@@ -28,7 +28,7 @@ namespace bibliothek.at.Controllers
             items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2019, 4, 21), "Ostersonntag", "Ostersonntag", CountryCode.AT));
             items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2019, 6, 9), "Pfingstsonntag", "Pfingstsonntag", CountryCode.AT));
 
-            ViewBag.PublicHolidays = items.Where(o => o.Date >= DateTime.Now).Take(5);
+            ViewBag.PublicHolidays = items.OrderBy(o => o.Date).Where(o => o.Date >= DateTime.Now).Take(5);
 
             return View();
         }

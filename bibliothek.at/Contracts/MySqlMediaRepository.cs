@@ -250,8 +250,7 @@ namespace bibliothek.at.Contracts
                 }
             }
 
-            //return items;
-            return items.GroupBy(o => o.MedienArt).Select(o => new { o.Key, Items = o.OrderByDescending(x => x.Entlehnungen).Take(5) }).SelectMany(o => o.Items).ToList();
+            return items.GroupBy(o => o.MedienArt).Select(o => new { o.Key, Items = o.OrderByDescending(x => x.Entlehnungen).Take(10) }).SelectMany(o => o.Items).ToList();
         }
 
         public MediaItem GetMediaItem(int id)

@@ -52,13 +52,24 @@
 {
     <div class="row equal">
 
-        <div class="col-xs-12"><h3>Weiter Vorschläge</h3></div>
+        <div class="col-xs-12" style="margin-top:20px;"><h3><i class="fa fa-star" aria-hidden="true"></i> Ähnliche Medien</h3></div>
 
         @foreach (var item in Model.SimilarBooks.OrderByDescending(o => o.Mediennummer))
         {
             <div class="col-xs-12 col-sm-4 col-md-3">
                 <div class="thumbnail">
-                    <div class="w-100" style="height:280px; display:block; background-image:url('@item.ImageUrl'); background-repeat:no-repeat; background-size:100%;"></div>
+                    @if (item.Mediennummer > 0)
+                    {
+                        <a href="/Medien/Detail/@item.Mediennummer">
+                            <div class="w-100 Book" style="background-image:url('@item.ImageUrl'), url('/Content/nocover.jpg');"></div>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@item.Url">
+                            <div class="w-100 Book" style="background-image:url('@item.ImageUrl'), url('/Content/nocover.jpg');"></div>
+                        </a>
+                    }
                     <div class="caption text-center">
                         <h4>@item.Title <small>@item.Verfasser</small></h4>
                         @if (item.Mediennummer > 0)
@@ -67,7 +78,7 @@
                         }
                         else
                         {
-                            <a href="@item.Url" class="btn btn-sm btn-danger">Bei Amazon.de kaufen</a>
+                            <a href="@item.Url" class="btn btn-danger"><i class="fa fa-amazon" aria-hidden="true"></i> weiter zu Amazon.de</a>
                         }
                     </div>
                 </div>

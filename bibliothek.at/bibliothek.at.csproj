@@ -195,6 +195,7 @@
     <Content Include="Content\Image6.jpg" />
     <Content Include="Content\image7.jpg" />
     <Content Include="Content\logo.jpg" />
+    <Content Include="Content\nocover.jpg" />
     <Content Include="Content\Pic_01.jpg" />
     <Content Include="Content\Print.css" />
     <Content Include="Content\Site.css" />

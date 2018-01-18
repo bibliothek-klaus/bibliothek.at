@@ -18,6 +18,16 @@ namespace bibliothek.at.Controllers
             this._enhanceMedia = enhanceMedia;
         }
 
+        private Dictionary<string, string> GetMedienArtMapping()
+        {
+            var medienArt = new Dictionary<string, string>();
+            medienArt.Add("D", "Dichtung");
+            medienArt.Add("K", "Kinderbücher");
+            medienArt.Add("J", "Jugendbücher");
+            medienArt.Add("S", "Sachbücher");
+            return medienArt;
+        }
+
         [OutputCache(Duration = 3600)]
         public JsonResult Status()
         {
@@ -28,12 +38,14 @@ namespace bibliothek.at.Controllers
         //[OutputCache(Duration = 3600)]
         public ActionResult Neuanschaffungen()
         {
+            ViewBag.Mapping = this.GetMedienArtMapping();
+
             var items = this._mediaRepository.GetNewMediaItems().OrderBy(o => o.MedienArt);
+
+            #region Fallback Cover Image
 
             foreach (var item in items)
             {
-                #region Fallback Cover Image
-
                 if (string.IsNullOrEmpty(item.ImageUrl))
                 {
                     var cleanIsbn = item.ISBN.Replace("-", string.Empty);
@@ -41,21 +53,23 @@ namespace bibliothek.at.Controllers
 
                     //item.ImageUrl = $"http://covers.openlibrary.org/b/isbn/{item.ISBN}-L.jpg";
                 }
-
-                #endregion
             }
+
+            #endregion
 
             return View(items.ToList());
         }
 
         public ActionResult Trends()
         {
+            ViewBag.Mapping = this.GetMedienArtMapping();
+
             var items = this._mediaRepository.GetPopularMediaItems();
+
+            #region Fallback Cover Image
 
             foreach (var item in items)
             {
-                #region Fallback Cover Image
-
                 if (string.IsNullOrEmpty(item.ImageUrl))
                 {
                     var cleanIsbn = item.ISBN.Replace("-", string.Empty);
@@ -63,9 +77,9 @@ namespace bibliothek.at.Controllers
 
                     //item.ImageUrl = $"http://covers.openlibrary.org/b/isbn/{item.ISBN}-L.jpg";
                 }
-
-                #endregion
             }
+
+            #endregion
 
             return View(items);
         }
@@ -209,7 +223,7 @@ namespace bibliothek.at.Controllers
                 var result = this._enhanceMedia.GetDetails(item.ISBN);
                 item.ImageUrl = result.Item1;
 
-                var similarBooks = result.Item2.Where(o => !string.IsNullOrEmpty(o.Isbn) && !string.IsNullOrEmpty(o.Verfasser)).ToList();
+                var similarBooks = result.Item2?.Where(o => !string.IsNullOrEmpty(o.Isbn) && !string.IsNullOrEmpty(o.Verfasser)).ToList();
                 var availableMedias = this._mediaRepository.CheckIsbnsAvailable(similarBooks?.Select(o => o.Isbn).ToList());
                 if (availableMedias != null)
                 {

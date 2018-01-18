@@ -1,22 +1,17 @@
 ﻿@model List<bibliothek.at.Models.MediaItem>
 @{
     ViewBag.Title = "Neuanschaffungen";
-    var medienArt = new Dictionary<string, string>();
-    medienArt.Add("D", "Dichtung");
-    medienArt.Add("K", "Kinderbücher");
-    medienArt.Add("J", "Jugendbücher");
-    medienArt.Add("S", "Sachbücher");
+    var mapping = ((Dictionary<string, string>)ViewBag.Mapping);
 }
 
 <h2>Neuanschaffungen</h2>
 
 <h3>Kategorien</h3>
 <ul class="list-group">
-    @foreach (var item in medienArt)
+    @foreach (var item in mapping)
     {
         <li class="list-group-item"><a href="#@item.Key">@item.Value</a></li>
     }
-
 </ul>
 
 <div class="row equal">
@@ -28,14 +23,14 @@
             {
                 lastMediaArt = item.MedienArt;
 
-                var name = medienArt.Where(o => o.Key == item.MedienArt.ToUpper()).Select(o => o.Value).FirstOrDefault();
+                var name = mapping.Where(o => o.Key == item.MedienArt.ToUpper()).Select(o => o.Value).FirstOrDefault();
                 <div class="col-xs-12"><h3 id="@item.MedienArt">Medienart: @name (@item.MedienArt)</h3></div>
             }
 
             <div class="col-xs-12 col-sm-4 col-md-3">
                 <div class="thumbnail">
                     <a href="/Medien/Detail/@item.Id">
-                        <div class="w-100" style="height:300px; display:block; background-image:url('@item.ImageUrl'); background-repeat:no-repeat; background-size:100%;"></div>
+                        <div class="w-100 Book" style="background-image:url('@item.ImageUrl'), url('/Content/nocover.jpg');"></div>
                     </a>
                     <div class="caption text-center">
                         <a href="/Medien/Detail/@item.Id"><h4>@item.Sachtitel <small>@item.Verfasser</small></h4></a>

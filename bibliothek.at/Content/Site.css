@@ -87,3 +87,11 @@ footer {
     display: -webkit-flex;
     flex-wrap: wrap;
 }
+
+.Book {
+    height: 300px;
+    display: block;
+    border: 1px solid #dddddd;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}

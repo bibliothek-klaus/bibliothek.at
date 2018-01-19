@@ -38,7 +38,7 @@ namespace bibliothek.at.Controllers
             return Json(item, JsonRequestBehavior.AllowGet);
         }
 
-        //[OutputCache(Duration = 3600)]
+        [OutputCache(Duration = 3600)]
         public ActionResult Neuanschaffungen()
         {
             ViewBag.Mapping = this.GetMedienArtMapping();
@@ -49,12 +49,10 @@ namespace bibliothek.at.Controllers
 
             foreach (var item in items)
             {
-                if (string.IsNullOrEmpty(item.ImageUrl))
+                if (string.IsNullOrEmpty(item.ImageUrl) && !string.IsNullOrEmpty(item.ISBN))
                 {
                     var cleanIsbn = item.ISBN.Replace("-", string.Empty);
                     item.ImageUrl = $"http://cover.ekz.de/{cleanIsbn}.jpg";
-
-                    //item.ImageUrl = $"http://covers.openlibrary.org/b/isbn/{item.ISBN}-L.jpg";
                 }
             }
 
@@ -63,9 +61,10 @@ namespace bibliothek.at.Controllers
             return View(items.ToList());
         }
 
+        [OutputCache(Duration = 3600)]
         public ActionResult Trends()
         {
-            ViewBag.Mapping = this.GetMedienArtMapping();
+            ViewBag.Mapping = this.GetMedienArtMapping().Where(o => o.Key != "3" && o.Key != "4").ToDictionary(o => o.Key, o => o.Value);
 
             var items = this._mediaRepository.GetPopularMediaItems();
 
@@ -73,11 +72,10 @@ namespace bibliothek.at.Controllers
 
             foreach (var item in items)
             {
-                if (string.IsNullOrEmpty(item.ImageUrl))
+                if (string.IsNullOrEmpty(item.ImageUrl) && !string.IsNullOrEmpty(item.ISBN))
                 {
                     var cleanIsbn = item.ISBN.Replace("-", string.Empty);
                     item.ImageUrl = $"http://cover.ekz.de/{cleanIsbn}.jpg";
-
                     //item.ImageUrl = $"http://covers.openlibrary.org/b/isbn/{item.ISBN}-L.jpg";
                 }
             }
@@ -95,7 +93,7 @@ namespace bibliothek.at.Controllers
         public ActionResult Zeitschriftenabos()
         {
             var items = new List<Magazine>();
-            items.Add(new Magazine("Anna", "https://www.oz-verlag.de/anna/"));
+            items.Add(new Magazine("Anna", "https://www.oz-verlag.de/anna/", "Monatlich") { Description = "Anna ist eine Handarbeitszeitschrift sie finden informationen zu Wohnaccessoires und Dekoratives zum Selbermachen. Von Ideen für gängige Handarbeitstechniken bis hin zu Projekten für alte Handarbeitsarten, wie z.B. Klöppeln, ist in der Anna alles dabei." });
             items.Add(new Magazine("Architektur und Wohnen", "http://www.awmagazin.de/"));
             items.Add(new Magazine("Bergsteiger", "http://bergsteiger.de/"));
             items.Add(new Magazine("Bike"));
@@ -214,7 +212,7 @@ namespace bibliothek.at.Controllers
             return Json(null);
         }
 
-        //[OutputCache(Duration = 3600, VaryByParam = "id")]
+        [OutputCache(Duration = 3600, VaryByParam = "id")]
         public ActionResult Detail(int id)
         {
             var item = this._mediaRepository.GetMediaItem(id);

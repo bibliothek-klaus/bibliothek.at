@@ -200,7 +200,7 @@ namespace bibliothek.at.Contracts
                 {
                     connection.Open();
 
-                    using (var command = new MySqlCommand("SELECT * FROM Medien WHERE Medienart IN ('J', 'D', 'S', 'K', 'W', '3', '4') AND Einstelldatum < @FilterDate ORDER BY Einstelldatum DESC LIMIT 200", connection))
+                    using (var command = new MySqlCommand("SELECT * FROM Medien WHERE Medienart IN ('J', 'D', 'S', 'K', 'W', '3', '4') AND Einstelldatum > @FilterDate ORDER BY Einstelldatum DESC", connection))
                     {
                         var filterDate = DateTime.Now.AddDays(-20);
                         command.Parameters.Add("FilterDate", MySqlDbType.DateTime).Value = filterDate;

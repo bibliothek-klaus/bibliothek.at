@@ -4,7 +4,7 @@
     var mapping = ((Dictionary<string, string>)ViewBag.Mapping);
 }
 
-<h2>Trends, die Top 10 der Entlehnungen</h2>
+<h2>Trends <small>die beliebtesten Bücher der letzten Wochen</small></h2>
 
 <h3>Kategorien</h3>
 <ul class="list-group">
@@ -24,7 +24,7 @@
                 lastMediaArt = item.MedienArt;
 
                 var name = mapping.Where(o => o.Key == item.MedienArt.ToUpper()).Select(o => o.Value).FirstOrDefault();
-                <div class="col-xs-12"><h3 id="@item.MedienArt">Medienart: @name (@item.MedienArt)</h3></div>
+                <div class="col-xs-12"><h3 id="@item.MedienArt">@name <small>Medienart @item.MedienArt</small></h3></div>
             }
 
             <div class="col-xs-12 col-sm-4 col-md-3">

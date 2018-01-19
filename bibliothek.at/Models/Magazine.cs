@@ -5,6 +5,7 @@
         public string Name { get; set; }
         public string Website { get; set; }
         public string PublicationFrequency { get; set; }
+        public string Description { get; set; }
 
         public Magazine(string name)
         {

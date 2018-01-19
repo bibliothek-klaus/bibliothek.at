@@ -25,6 +25,9 @@ namespace bibliothek.at.Controllers
             medienArt.Add("K", "Kinderbücher");
             medienArt.Add("J", "Jugendbücher");
             medienArt.Add("S", "Sachbücher");
+            medienArt.Add("W", "Kinderhörbücher");
+            medienArt.Add("3", "Hörbücher");
+            medienArt.Add("4", "Jugendhörbücher");
             return medienArt;
         }
 

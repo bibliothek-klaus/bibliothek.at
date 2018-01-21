@@ -24,7 +24,7 @@ namespace bibliothek.at.Controllers
             return this._mediaRepository.GetMediaTypes();
         }
 
-        [OutputCache(Duration = 3600)]
+        [OutputCache(Duration = 3600, VaryByParam = "mediaType")]
         public ActionResult Sitemap(string mediaType)
         {
             var nodes = new List<SitemapNode>();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace bibliothek.at.Models
 {
@@ -15,6 +16,7 @@ namespace bibliothek.at.Models
         public string Rezension { get; set; }
         public string Verlag { get; set; }
         public int Entlehnungen { get; set; }
+        public DateTime PurchaseDate { get; set; }
 
         public string ImageUrl { get; set; }
 

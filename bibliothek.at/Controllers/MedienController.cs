@@ -1,5 +1,6 @@
 ﻿using bibliothek.at.Contracts;
 using bibliothek.at.Models;
+using SimpleSiteMap.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,29 @@ namespace bibliothek.at.Controllers
             medienArt.Add("3", "Hörbücher");
             medienArt.Add("4", "Jugendhörbücher");
             return medienArt;
+        }
+
+        [OutputCache(Duration = 3600)]
+        public ActionResult Sitemap()
+        {
+            //TODO: Optimize logic to split in parts
+            //sitemapService.ConvertToXmlSitemap
+            //const int pageSize = 25000;
+
+            var medias = this._mediaRepository.GetMediaItems("");
+            var domain = Request.Url.Authority;
+
+            var sitemapNodes = (from p in medias
+                                select new SitemapNode(
+                                    new Uri($"http://{domain}/Medien/Detail/{p.Id}"), p.PurchaseDate)
+                                {
+                                    Frequency = SitemapFrequency.Monthly,
+                                    Priority = 0.5
+                                }).ToList();
+
+            var sitemapService = new SitemapService();
+            var xml = sitemapService.ConvertToXmlUrlset(sitemapNodes);
+            return this.Content(xml, "application/xml");
         }
 
         [OutputCache(Duration = 3600)]

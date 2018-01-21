@@ -85,16 +85,18 @@ namespace bibliothek.at.Contracts
 
         private MediaItem ReadMediaItem(MySqlDataReader reader)
         {
-            var item = new MediaItem();
-            item.Status = true;
+            var borrowed = false;
             var status = reader["Status"] as string;
             if (status != null)
             {
                 if (status.Equals("entlehnt") || status.Equals("verlängert"))
                 {
-                    item.Status = false;
+                    borrowed = true;
                 }
             }
+
+            var item = new MediaItem();
+            item.Status = borrowed;
             item.Id = (int)reader["Mediennummer"];
             item.MedienArt = reader["Medienart"] as string;
             item.Sachtitel = reader["Sachtitel"] as string;
@@ -105,6 +107,15 @@ namespace bibliothek.at.Contracts
             item.Rezension = reader["Rezension"] as string;
             item.Verlag = reader["Verlag"] as string;
             item.Entlehnungen = (int)reader["Entlehnungen"];
+
+            try
+            {
+                item.PurchaseDate = (DateTime)reader["Einstelldatum"];
+            }
+            catch
+            {
+                item.PurchaseDate = new DateTime(2000, 1, 1);
+            }
 
             return item;
         }

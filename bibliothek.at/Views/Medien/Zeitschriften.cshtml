@@ -1,16 +1,16 @@
 ﻿@model List<bibliothek.at.Models.Magazine>
 @{
-    ViewBag.Title = "Zeitschriftenabos";
+    ViewBag.Title = "Zeitschriften";
 }
 
-<h2>Zeitschriftenabos</h2>
+<h2>Zeitschriften</h2>
 
 
 <div class="row equal">
 
         @foreach (var item in Model)
         {
-            <div class="col-xs-4">
+            <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="thumbnail">
                     <img src="http://via.placeholder.com/350x150?text=@item.Name" class="img-responsive" alt="@item.Name" title="@item.Name" />
                     <div class="caption">
@@ -25,12 +25,15 @@
                         }
                         @if (item.PublicationFrequency != null)
                         {
-                            <table class="table table-bordered" style="margin-top:20px;">
-                                <tr>
-                                    <th>Erscheinungsweise</th>
-                                    <td>@item.PublicationFrequency</td>
-                                </tr>
-                            </table>
+                            <div class="table-responsive" style="margin-top:20px;">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th class="hidden-xs">Erscheinungsweise</th>
+                                        <th class="visible-xs">Auflage</th>
+                                        <td>@item.PublicationFrequency</td>
+                                    </tr>
+                                </table>
+                            </div>
                         }
                     </div>
                 </div>

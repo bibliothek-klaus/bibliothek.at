@@ -85,12 +85,7 @@ namespace bibliothek.at.Controllers
             return View(items);
         }
 
-        public ActionResult Suche()
-        {
-            return View(new SearchRequest());
-        }
-
-        public ActionResult Zeitschriftenabos()
+        public ActionResult Zeitschriften()
         {
             var items = new List<Magazine>();
             items.Add(new Magazine("Anna", "https://www.oz-verlag.de/anna/", "Monatlich") { Description = "Anna ist eine Handarbeitszeitschrift sie finden informationen zu Wohnaccessoires und Dekoratives zum Selbermachen. Von Ideen für gängige Handarbeitstechniken bis hin zu Projekten für alte Handarbeitsarten, wie z.B. Klöppeln, ist in der Anna alles dabei." });
@@ -149,6 +144,11 @@ namespace bibliothek.at.Controllers
             items.Add(new Magazine("Wohnen und Garten"));
             items.Add(new Magazine("Wohnidee"));
             return View(items);
+        }
+
+        public ActionResult Suche()
+        {
+            return View(new SearchRequest());
         }
 
         [HttpPost]

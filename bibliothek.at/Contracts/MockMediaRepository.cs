@@ -38,6 +38,21 @@ namespace bibliothek.at.Contracts
             };
         }
 
+        public Dictionary<string, string> GetMediaTypes()
+        {
+            var medienArt = new Dictionary<string, string>();
+            medienArt.Add("D", "Dichtung");
+            medienArt.Add("K", "Kinderbücher");
+            medienArt.Add("J", "Jugendbücher");
+            medienArt.Add("S", "Sachbücher");
+            medienArt.Add("W", "Kinderhörbücher");
+            //medienArt.Add("1", "Filme");
+            //medienArt.Add("2", "Filme");
+            medienArt.Add("3", "Hörbücher");
+            medienArt.Add("4", "Jugendhörbücher");
+            return medienArt;
+        }
+
         public List<AvailableMediaItem> CheckIsbnsAvailable(List<string> isbns)
         {
             if (isbns == null)
@@ -63,6 +78,11 @@ namespace bibliothek.at.Contracts
         public List<MediaItem> GetMediaItems(string search)
         {
             return this._mediaItems.Where(o => o.Sachtitel.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1 || o.Verfasser.IndexOf(search, StringComparison.OrdinalIgnoreCase) != -1).ToList();
+        }
+
+        public List<MediaItem> GetMediaItemsByMediaType(string mediaType)
+        {
+            return this._mediaItems.Where(o => o.MedienArt.Equals(mediaType, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
         public MediaStatus GetMediaStatus()

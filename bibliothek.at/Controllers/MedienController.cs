@@ -1,6 +1,6 @@
 ﻿using bibliothek.at.Contracts;
 using bibliothek.at.Models;
-using SimpleSiteMap.Service;
+using SimpleMvcSitemap;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,38 +21,32 @@ namespace bibliothek.at.Controllers
 
         private Dictionary<string, string> GetMedienArtMapping()
         {
-            var medienArt = new Dictionary<string, string>();
-            medienArt.Add("D", "Dichtung");
-            medienArt.Add("K", "Kinderbücher");
-            medienArt.Add("J", "Jugendbücher");
-            medienArt.Add("S", "Sachbücher");
-            medienArt.Add("W", "Kinderhörbücher");
-            medienArt.Add("3", "Hörbücher");
-            medienArt.Add("4", "Jugendhörbücher");
-            return medienArt;
+            return this._mediaRepository.GetMediaTypes();
         }
 
         [OutputCache(Duration = 3600)]
-        public ActionResult Sitemap()
+        public ActionResult Sitemap(string mediaType)
         {
-            //TODO: Optimize logic to split in parts
-            //sitemapService.ConvertToXmlSitemap
-            //const int pageSize = 25000;
+            var nodes = new List<SitemapNode>();
 
-            var medias = this._mediaRepository.GetMediaItems("");
-            var domain = Request.Url.Authority;
+            if (string.IsNullOrEmpty(mediaType))
+            {
+                var items = this._mediaRepository.GetMediaTypes();
+                foreach (var item in items)
+                {
+                    nodes.Add(new SitemapNode(Url.Action("Sitemap", "Medien", new { MediaType = item.Key })));
+                }
 
-            var sitemapNodes = (from p in medias
-                                select new SitemapNode(
-                                    new Uri($"http://{domain}/Medien/Detail/{p.Id}"), p.PurchaseDate)
-                                {
-                                    Frequency = SitemapFrequency.Monthly,
-                                    Priority = 0.5
-                                }).ToList();
+                return new SitemapProvider().CreateSitemap(new SitemapModel(nodes));
+            }
 
-            var sitemapService = new SitemapService();
-            var xml = sitemapService.ConvertToXmlUrlset(sitemapNodes);
-            return this.Content(xml, "application/xml");
+            var mediaItems = this._mediaRepository.GetMediaItemsByMediaType(mediaType);
+            foreach (var item in mediaItems)
+            {
+                nodes.Add(new SitemapNode(Url.Action("Detail", "Medien", new { item.Id })) { ChangeFrequency = ChangeFrequency.Monthly });
+            }
+
+            return new SitemapProvider().CreateSitemap(new SitemapModel(nodes));
         }
 
         [OutputCache(Duration = 3600)]

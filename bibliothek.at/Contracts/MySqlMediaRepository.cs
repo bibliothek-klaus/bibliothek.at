@@ -19,6 +19,21 @@ namespace bibliothek.at.Contracts
             this._connectionString = connectionString;
         }
 
+        public Dictionary<string, string> GetMediaTypes()
+        {
+            var medienArt = new Dictionary<string, string>();
+            medienArt.Add("D", "Dichtung");
+            medienArt.Add("K", "Kinderbücher");
+            medienArt.Add("J", "Jugendbücher");
+            medienArt.Add("S", "Sachbücher");
+            medienArt.Add("W", "Kinderhörbücher");
+            //medienArt.Add("1", "Filme");
+            //medienArt.Add("2", "Filme");
+            medienArt.Add("3", "Hörbücher");
+            medienArt.Add("4", "Jugendhörbücher");
+            return medienArt;
+        }
+
         public MediaStatus GetMediaStatus()
         {
             var item = new MediaStatus();
@@ -194,6 +209,39 @@ namespace bibliothek.at.Contracts
                     }
                 }
                 catch (Exception exception)
+                {
+                }
+            }
+
+            return items;
+        }
+
+        public List<MediaItem> GetMediaItemsByMediaType(string mediaType)
+        {
+            var items = new List<MediaItem>();
+
+            using (var connection = new MySqlConnection(this._connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (var command = new MySqlCommand("SELECT * FROM Medien WHERE Medienart = @Medienart", connection))
+                    {
+                        var filterDate = DateTime.Now.AddDays(-20);
+                        command.Parameters.Add("Medienart", MySqlDbType.VarChar, 50).Value = mediaType;
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var item = this.ReadMediaItem(reader);
+                                items.Add(item);
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
                 {
                 }
             }

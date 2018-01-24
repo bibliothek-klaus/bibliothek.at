@@ -109,9 +109,9 @@ namespace bibliothek.at.Controllers
             items.Add(new Magazine("Anna", "https://www.oz-verlag.de/anna/", "Monatlich") { Description = "Anna ist eine Handarbeitszeitschrift sie finden informationen zu Wohnaccessoires und Dekoratives zum Selbermachen. Von Ideen für gängige Handarbeitstechniken bis hin zu Projekten für alte Handarbeitsarten, wie z.B. Klöppeln, ist in der Anna alles dabei." });
             items.Add(new Magazine("Architektur und Wohnen", "http://www.awmagazin.de/"));
             items.Add(new Magazine("Bergsteiger", "http://bergsteiger.de/"));
-            items.Add(new Magazine("Bike"));
+            items.Add(new Magazine("Bike", "http://www.bike-magazin.de/"));
             items.Add(new Magazine("Bild der Wissenschaft", "http://www.wissenschaft.de/"));
-            items.Add(new Magazine("Bio"));
+            items.Add(new Magazine("Bio", "https://www.biomagazin.de/"));
             items.Add(new Magazine("Blooms"));
             items.Add(new Magazine("Brandeins"));
             items.Add(new Magazine("Bravo", "http://www.bravo.de/", "jede zweite Woche"));
@@ -121,13 +121,13 @@ namespace bibliothek.at.Controllers
             items.Add(new Magazine("Burda"));
             items.Add(new Magazine("Chip"));
             items.Add(new Magazine("ct Magazin"));
-            items.Add(new Magazine("Das Kochrezept"));
             items.Add(new Magazine("Einfach hausgemacht"));
             items.Add(new Magazine("GEO"));
             items.Add(new Magazine("GEOlino", "https://www.geo.de/geolino"));
             items.Add(new Magazine("GEOmini"));
             items.Add(new Magazine("GEO Saison"));
             items.Add(new Magazine("GEO spezial"));
+            items.Add(new Magazine("GEO wissen"));
             items.Add(new Magazine("Gesund leben"));
             items.Add(new Magazine("Gusto"));
             items.Add(new Magazine("Häuser"));
@@ -140,9 +140,11 @@ namespace bibliothek.at.Controllers
             items.Add(new Magazine("Landlust", "http://www.landlust.de/"));
             items.Add(new Magazine("Living at Home"));
             items.Add(new Magazine("Mein schöner Garten"));
+            items.Add(new Magazine("Mein schönes Land"));
             items.Add(new Magazine("Micky Maus Comics", "https://www.micky-maus.de/magazin/"));
             items.Add(new Magazine("Mollie makes"));
             items.Add(new Magazine("Motor-Freizeit-Trends"));
+            items.Add(new Magazine("National Geographic"));
             items.Add(new Magazine("Natur und Heilen"));
             items.Add(new Magazine("ÖKO -Test"));
             items.Add(new Magazine("Outdoor"));
@@ -156,6 +158,7 @@ namespace bibliothek.at.Controllers
             items.Add(new Magazine("Terra Mater"));
             items.Add(new Magazine("Trekkingbike"));
             items.Add(new Magazine("Trend"));
+            items.Add(new Magazine("Vital"));
             items.Add(new Magazine("Welt der Frau"));
             items.Add(new Magazine("Welt der Wunder"));
             items.Add(new Magazine("Wohnen & Dekorieren"));

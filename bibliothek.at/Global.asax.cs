@@ -41,6 +41,7 @@ namespace bibliothek.at
             //Real Data
             container.Register<IMediaRepository, MySqlMediaRepository>(Lifestyle.Scoped);
             container.Register<ICalendarRepository, GoogleCalendarRepository>(Lifestyle.Scoped);
+            container.Register<IEmailMarketing, MailChimpEmailMarketing>(Lifestyle.Scoped);
 
 
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());

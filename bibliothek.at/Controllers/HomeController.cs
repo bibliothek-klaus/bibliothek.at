@@ -12,10 +12,12 @@ namespace bibliothek.at.Controllers
     public class HomeController : Controller
     {
         ICalendarRepository _calendarRepository;
+        IEmailMarketing _emailMarketing;
 
-        public HomeController(ICalendarRepository calendarRepository)
+        public HomeController(ICalendarRepository calendarRepository, IEmailMarketing emailMarketing)
         {
             this._calendarRepository = calendarRepository;
+            this._emailMarketing = emailMarketing;
         }
 
         public ActionResult Index()
@@ -84,6 +86,23 @@ namespace bibliothek.at.Controllers
         }
 
         public ActionResult Subventionsgeber()
+        {
+            return View();
+        }
+
+        public ActionResult Newsletter()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Newsletter(string emailAddress)
+        {
+            this._emailMarketing.RegisterRecipient(emailAddress);
+            return RedirectToAction("NewsletterConfirm");
+        }
+
+        public ActionResult NewsletterConfirm()
         {
             return View();
         }

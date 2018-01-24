@@ -79,6 +79,9 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MailChimp, Version=1.1.92.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailChimp.NET.1.1.92\lib\net40\MailChimp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -102,6 +105,9 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="SimpleInjector, Version=4.0.12.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.4.0.12\lib\net45\SimpleInjector.dll</HintPath>
@@ -158,7 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\AmazonEnhanceMedia.cs" />
+    <Compile Include="Contracts\IEmailMarketing.cs" />
     <Compile Include="Contracts\IEnhanceMedia.cs" />
+    <Compile Include="Contracts\MailChimpEmailMarketing.cs" />
     <Compile Include="Contracts\MockCalendarRepository.cs" />
     <Compile Include="Contracts\GoogleCalendarRepository.cs" />
     <Compile Include="Contracts\ICalendarRepository.cs" />
@@ -283,6 +291,8 @@
     <Content Include="Views\Medien\Detail.cshtml" />
     <Content Include="Views\Medien\Zeitschriften.cshtml" />
     <Content Include="Views\Medien\Trends.cshtml" />
+    <Content Include="Views\Home\Newsletter.cshtml" />
+    <Content Include="Views\Home\NewsletterConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -27,19 +27,19 @@ namespace bibliothek.at.Controllers
         [OutputCache(Duration = 3600, VaryByParam = "mediaType")]
         public ActionResult Sitemap(string mediaType)
         {
-            var nodes = new List<SitemapNode>();
-
             if (string.IsNullOrEmpty(mediaType))
             {
+                var indexNodes= new List<SitemapIndexNode>();
                 var items = this._mediaRepository.GetMediaTypes();
                 foreach (var item in items)
                 {
-                    nodes.Add(new SitemapNode(Url.Action("Sitemap", "Medien", new { MediaType = item.Key })));
+                    indexNodes.Add(new SitemapIndexNode(Url.Action("Sitemap", "Medien", new { MediaType = item.Key })));
                 }
 
-                return new SitemapProvider().CreateSitemap(new SitemapModel(nodes));
+                return new SitemapProvider().CreateSitemapIndex(new SitemapIndexModel(indexNodes));
             }
 
+            var nodes = new List<SitemapNode>();
             var mediaItems = this._mediaRepository.GetMediaItemsByMediaType(mediaType);
             foreach (var item in mediaItems)
             {

@@ -12,9 +12,10 @@ namespace bibliothek.at.Contracts
         public MockMediaRepository()
         {
             this._mediaItems = new List<MediaItem> {
-                new MediaItem { Id = 1746, ISBN = "978-3551559005", MedienArt = "S", Sachtitel = "Harry Potter und das verwunschene Kind. Teil eins und zwei", Verfasser = "J.K. Rowling", Systematik = "NA7" },
+                new MediaItem { Id =  1746, ISBN = "978-3551559005", MedienArt = "S", Sachtitel = "Harry Potter und das verwunschene Kind. Teil eins und zwei", Verfasser = "J.K. Rowling", Systematik = "NA7" },
                 new MediaItem { Id = 14492, ISBN = "978-3551556950", MedienArt = "J", Sachtitel = "Die Märchen von Beedle dem Barden", Verfasser = "J.K. Rowling", Systematik = "PU" },
                 new MediaItem { Id = 14541, ISBN = "978-3431039993", MedienArt = "J", Sachtitel = "Origin ", Verfasser = "Dan Brown", Systematik = "PU" },
+                new MediaItem { Id = 14591, ISBN = "978-3431039993", MedienArt = "J", Sachtitel = "Origin ", Verfasser = "Dan Brown", Systematik = "PU", Status = true  },
                 new MediaItem { Id = 14542, ISBN = "978-3551354044", MedienArt = "J", Sachtitel = "Harry Potter und der Feuerkelch Bd. 4", Verfasser = "Verfasser", Systematik = "PU" },
                 new MediaItem { Id = 15465, ISBN = "978-3426199213", MedienArt = "J", Sachtitel = "Flugangst 7A: Psychothriller", Verfasser = "Sebastian Fitzek", Systematik = "PU", Status = true },
                 new MediaItem { Id = 15466, ISBN = "978-3831034215", MedienArt = "J", Sachtitel = "Jamies 5-Zutaten-Küche: Quick & Easy", Verfasser = "Jamie Oliver", Systematik = "PU" },

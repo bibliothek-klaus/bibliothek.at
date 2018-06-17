@@ -100,13 +100,13 @@ namespace bibliothek.at.Contracts
 
         private MediaItem ReadMediaItem(MySqlDataReader reader)
         {
-            var borrowed = false;
+            var borrowed = true;
             var status = reader["Status"] as string;
             if (status != null)
             {
                 if (status.Equals("entlehnt") || status.Equals("verlängert"))
                 {
-                    borrowed = true;
+                    borrowed = false;
                 }
             }
 

@@ -35,11 +35,11 @@ namespace bibliothek.at
             container.Register<IEnhanceMedia, AmazonEnhanceMedia>(Lifestyle.Scoped);
 
             //Mock Data
-            container.Register<IMediaRepository, MockMediaRepository>(Lifestyle.Scoped);
+            //container.Register<IMediaRepository, MockMediaRepository>(Lifestyle.Scoped);
             //container.Register<ICalendarRepository, MockCalendarRepository>(Lifestyle.Scoped);
 
             //Real Data
-            //container.Register<IMediaRepository, MySqlMediaRepository>(Lifestyle.Scoped);
+            container.Register<IMediaRepository, MySqlMediaRepository>(Lifestyle.Scoped);
             container.Register<ICalendarRepository, GoogleCalendarRepository>(Lifestyle.Scoped);
             container.Register<IEmailMarketing, MailChimpEmailMarketing>(Lifestyle.Scoped);
 

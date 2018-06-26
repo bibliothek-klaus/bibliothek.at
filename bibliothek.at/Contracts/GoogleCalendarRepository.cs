@@ -41,7 +41,7 @@ namespace bibliothek.at.Contracts
                 }
 
                 var events = service.Events.List(calendar.Id).Execute();
-                var items = events.Items.Where(o => o.Start.DateTime >= DateTime.Now).Select(o =>
+                var items = events.Items.Where(o => o.Start.DateTime >= DateTime.Now || o.End.DateTime <= DateTime.Now).Select(o =>
                     new CalendarEvent
                     {
                         Date = o.Start.DateTime.Value,

@@ -191,6 +191,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\googlecalendarcredential.json" />
     <Content Include="Content\background.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -324,11 +325,6 @@
   <ItemGroup>
     <Content Include="Content\Einverstaendniserklaerung.pdf" />
     <Content Include="Views\Home\Subventionsgeber.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Data\googlecalendarcredential.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

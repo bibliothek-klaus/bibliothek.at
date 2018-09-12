@@ -27,6 +27,7 @@ namespace bibliothek.at.Controllers
             //Add custom holidays
             items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2018, 4, 1), "Ostersonntag", "Ostersonntag", CountryCode.AT));
             items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2018, 5, 20), "Pfingstsonntag", "Pfingstsonntag", CountryCode.AT));
+            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2018, 12, 24), "HL Abend", "HL Abend", CountryCode.AT));
             items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2019, 4, 21), "Ostersonntag", "Ostersonntag", CountryCode.AT));
             items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2019, 6, 9), "Pfingstsonntag", "Pfingstsonntag", CountryCode.AT));
 

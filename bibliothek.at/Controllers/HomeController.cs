@@ -28,6 +28,7 @@ namespace bibliothek.at.Controllers
             items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2018, 4, 1), "Ostersonntag", "Ostersonntag", CountryCode.AT));
             items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2018, 5, 20), "Pfingstsonntag", "Pfingstsonntag", CountryCode.AT));
             items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2018, 12, 24), "HL Abend", "HL Abend", CountryCode.AT));
+            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2018, 12, 31), "Silvester", "Silvester", CountryCode.AT));
             items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2019, 4, 21), "Ostersonntag", "Ostersonntag", CountryCode.AT));
             items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2019, 6, 9), "Pfingstsonntag", "Pfingstsonntag", CountryCode.AT));
 
@@ -61,12 +62,12 @@ namespace bibliothek.at.Controllers
             items.Add(new Team("Evelyn Guger", "Ehrenamtlicher Mitarbeiter", "Guger.jpg"));
             //items.Add(new Team("Oli Halbeisen", "Ehrenamtlicher Mitarbeiter", "Halbeisen.jpg"));
             items.Add(new Team("Maria Heinzle", "Ehrenamtlicher Mitarbeiter", "Heinzle.jpg"));
-            items.Add(new Team("Rosi Hödl", "Ehrenamtlicher Mitarbeiter", "Hoedl.jpg"));
+            items.Add(new Team("Rosi Gächter", "Ehrenamtlicher Mitarbeiter", "Hoedl.jpg"));
             items.Add(new Team("Andrea Kopf", "Ehrenamtlicher Mitarbeiter", "Kopf.jpg"));
             items.Add(new Team("Karin Längle", "Ehrenamtlicher Mitarbeiter", "Laengle.jpg"));
             items.Add(new Team("Matthias Lampert", "Ehrenamtlicher Mitarbeiter", "Lampert.jpg"));
             items.Add(new Team("Quido Morscher", "Ehrenamtlicher Mitarbeiter", "MorscherQ.jpg"));
-            //items.Add(new Team("Daniel Morscher", "Ehrenamtlicher Mitarbeiter", "Morscher.jpg"));
+            items.Add(new Team("Daniel Morscher", "Ehrenamtlicher Mitarbeiter", "Morscher.jpg"));
             items.Add(new Team("Verena Müller", "Ehrenamtlicher Mitarbeiter", "MuellerV.jpg"));
             //items.Add(new Team("Antonia Primisser", "Ehrenamtlicher Mitarbeiter", "Primisser.jpg"));
             items.Add(new Team("Ulrike Geiger", "Ehrenamtlicher Mitarbeiter", "GeigerUlrike.jpg"));

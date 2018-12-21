@@ -110,6 +110,7 @@ namespace bibliothek.at.Controllers
             items.Add(new Magazine("Architektur und Wohnen", "http://www.awmagazin.de/", "alle zwei Monate") { Description = "Trends im Bereich Wohnen, Architektur, Interior" });
             items.Add(new Magazine("Bergsteiger", "http://bergsteiger.de/", "Monatlich") { Description = "Tourenbeschreibungen, Ausrüstungsteste" });
             items.Add(new Magazine("Bike", "http://www.bike-magazin.de/", "Monatlich") { Description = "Mountainbike: Tourenvorschläge, Materialteste" });
+            items.Add(new Magazine("Bike & Travel", "https://www.biketravel-magazin.com/", "alle zwei Monate") { Description = "Mountainbike: Tourenvorschläge" });
             items.Add(new Magazine("Bild der Wissenschaft", "http://www.wissenschaft.de/", "Monatlich") { Description = "Wissenschaft und Forschung, anspruchsvolle Berichte" });
             items.Add(new Magazine("Bio", "https://www.biomagazin.de/", "alle zwei Monate") { Description = "Magazin für Gesundheit, Körper, Geist und Seele" });
             items.Add(new Magazine("Blooms", "", "alle zwei Monate") { Description = "Kreative Dekoideen mit Blumen und anderen Materialien" });
@@ -121,6 +122,7 @@ namespace bibliothek.at.Controllers
             items.Add(new Magazine("Burda", "", "Monatlich") { Description = "Modezeitschrift mit Schnittmustern" });
             items.Add(new Magazine("Chip", "", "monatlich") { Description = "Testmagazin, Technikratgeber für die digitale Welt" });
             items.Add(new Magazine("ct Magazin", "", "alle zwei Wochen") { Description = "EDV für Profis" });
+            items.Add(new Magazine("Donald Duck", "", "monatlich") { Description = "Comic" });
             items.Add(new Magazine("Einfach hausgemacht", "", "jeden zweiten Monat") { Description = "Tipps für Lebensmittel, Küchengeräte, Haus und Kleidung" });
             items.Add(new Magazine("GEO", "", "Monatlich") { Description = "Reiseberichte rund um den Globus" });
             items.Add(new Magazine("GEOlino", "https://www.geo.de/geolino", "Monatlich") { Description = "Kinderzeitschrift von 8 bis 14 Jahren. Wissen, Spiele" });
@@ -139,11 +141,12 @@ namespace bibliothek.at.Controllers
             items.Add(new Magazine("Landapotheke", "", "einmal im Quartal") { Description = "Naturheilkunde, Kräuter, Alternativmedizin" });
             items.Add(new Magazine("Landlust", "http://www.landlust.de/", "alle zwei Monate") { Description = "Garten, Küche, ländliches Wohnen" });
             items.Add(new Magazine("Living at Home", "", "Monatlich") { Description = "Inneneinrichtung, Dekoration, Küche und Garten" });
+            items.Add(new Magazine("Ma vie", "https://mavie-mag.de/", "alle zwei Monate") { Description = "... sich einfach eine Pause gönnen" });
             items.Add(new Magazine("Mein schöner Garten", "", "Monatlich") { Description = "Ratgeber zur Gartengestaltung und Gartenarbeit" });
             items.Add(new Magazine("Mein schönes Land", "", "alle zwei Monate") { Description = "Inspirationen für das Landleben" });
             items.Add(new Magazine("Micky Maus Comics", "https://www.micky-maus.de/magazin/", "alle zwei Monate") { Description = "Comics aus der Disney-Produktion" });
             items.Add(new Magazine("Mollie makes", "", "alle zwei Monate") { Description = "Selbermachen mit Nadel, Wolle, Stoff, ..." });
-            items.Add(new Magazine("Motor-Freizeit-Trends", "", "alle zwei Monate") { Description = "Herausgeber aus Klaus; Beschreibung div. Automodelle" });
+            //items.Add(new Magazine("Motor-Freizeit-Trends", "", "alle zwei Monate") { Description = "Herausgeber aus Klaus; Beschreibung div. Automodelle" });
             items.Add(new Magazine("National Geographic", "", "Monatlich") { Description = "Reportagen über fremde Länder, Kulturen, Natur" });
             items.Add(new Magazine("Natur und Heilen", "", "Monatlich") { Description = "Naturgemäßes ganzheitliches Heilen und Leben" });
             items.Add(new Magazine("ÖKO -Test", "", "Monatlich") { Description = "Teste zu bedenklichen Stoffen in Lebensmitteln und diversen Gebrauchsgegenständen" });
@@ -156,10 +159,10 @@ namespace bibliothek.at.Controllers
             items.Add(new Magazine("Servus", "", "Monatlich") { Description = "Tradition, Natur, Essen, Brauchtum" });
             items.Add(new Magazine("Spotlight – einfach Englisch", "", "Monatlich") { Description = "Englisches Sprachmagazin mit Vokabelhilfen" });
             items.Add(new Magazine("Terra Mater", "", "alle zwei Monate") { Description = "Naturwissenschaften, Tiere, Pflanzen, Fotografie" });
-            items.Add(new Magazine("Trekkingbike", "", "alle zwei Monate") { Description = "Tourenbeschreibungen, Materialteste" });
+            items.Add(new Magazine("My Bike", "", "alle zwei Monate") { Description = "Tourenbeschreibungen, Materialteste" });
             items.Add(new Magazine("Trend", "", "Wöchentlich") { Description = "Aktuelle Nachrichten, Wirtschaft, Hintergründe" });
             items.Add(new Magazine("Vital", "", "Monatlich") { Description = "Gesunde Ernährung, Wohlbefinden" });
-            items.Add(new Magazine("Welt der Frau", "", "Monatlich") { Description = "Mode, Beauty, Kochen, Reise, Gesundheit" });
+            //items.Add(new Magazine("Welt der Frau", "", "Monatlich") { Description = "Mode, Beauty, Kochen, Reise, Gesundheit" });
             items.Add(new Magazine("Welt der Wunder", "", "Monatlich") { Description = "Entdecken, Staunen, Wissen" });
             items.Add(new Magazine("Wohnen & Dekorieren", "", "Monatlich") { Description = "Einrichtungs- und DIY-Ideen" });
             items.Add(new Magazine("Wohnen und Garten", "", "Monatlich") { Description = "Tipps für Wohnen Drinnen und Draußen, Rezepte" });

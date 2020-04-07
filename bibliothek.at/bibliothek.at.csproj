@@ -276,7 +276,6 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\Corona_BookSVC.pdf" />
     <None Include="Properties\PublishProfiles\Biblio.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />

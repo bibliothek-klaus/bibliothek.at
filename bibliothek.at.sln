@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bibliothek.at", "bibliothek.at\bibliothek.at.csproj", "{750E7F85-4B66-4DD3-948C-4F71928600B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bibliothek", "bibliothek\bibliothek.csproj", "{CC42BAA9-6EEE-4FC0-9F8A-8329CB8370E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{750E7F85-4B66-4DD3-948C-4F71928600B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{750E7F85-4B66-4DD3-948C-4F71928600B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{750E7F85-4B66-4DD3-948C-4F71928600B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC42BAA9-6EEE-4FC0-9F8A-8329CB8370E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC42BAA9-6EEE-4FC0-9F8A-8329CB8370E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC42BAA9-6EEE-4FC0-9F8A-8329CB8370E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC42BAA9-6EEE-4FC0-9F8A-8329CB8370E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

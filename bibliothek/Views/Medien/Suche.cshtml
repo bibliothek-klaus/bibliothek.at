@@ -1,0 +1,103 @@
+﻿@model bibliothek.Models.SearchRequest
+@{
+    ViewData["Title"] = "Suche";
+}
+
+<h2>Suche</h2>
+
+@using (Html.BeginForm("Suche", "Medien", FormMethod.Post, new { Class = "" }))
+{
+    <div class="input-group">
+        @Html.TextBoxFor(model => model.SearchValue, new { Class = "form-control", placeholder = "Medien Suche ..." })
+
+        <span class="input-group-btn">
+            <input type="submit" value="Suchen" class="btn btn-default" />
+        </span>
+    </div>
+}
+
+<br />
+
+@if (!string.IsNullOrEmpty(Model.SearchValue))
+{
+    <div id="jsGrid"></div>
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" rel="stylesheet" type="text/css" media="all" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+
+    $('#SearchValue').focus();
+
+    $("#jsGrid").jsGrid({
+        width: "100%",
+        height: "500px",
+
+        filtering: true,
+        inserting: false,
+        editing: false,
+        sorting: true,
+        paging: true,
+        autoload: true,
+
+        noDataContent: "Keine Medien gefunden",
+        pagerFormat: "Seiten: {first} {prev} {pages} {next} {last}    {pageIndex} von {pageCount}",
+        pagePrevText: "vorherige Seite",
+        pageNextText: "nächste Seite",
+        pageFirstText: "erste Seite",
+        pageLastText: "letzte Seite",
+
+        pageSize: 10,
+        pageButtonCount: 5,
+
+        controller: {
+            loadData: function (filter) {
+                return $.ajax({
+                    type: "GET",
+                    url: "/Medien/GetData?search=@Model.SearchValue",
+                    data: filter,
+                    dataType: "json"
+                });
+            }
+        },
+
+        fields: [
+            { name: "Id", type: "number", width: 60, title: "M-Nr.", css: "hidden-xs" },
+            { name: "MedienArt", type: "text", width: 30, title: "Art", css: "hidden-xs hidden-sm" },
+            { name: "Systematik", type: "text", width: 40, title: "Sys.", css: "hidden-xs hidden-sm" },
+            { name: "Status", type: "checkbox", width: 20, title: "V.", css: "hidden-xs" },
+            { name: "Sachtitel", type: "text", width: 300, css: "hidden-xs" },
+            { name: "Verfasser", type: "text", width: 120, css: "hidden-xs" },
+            {
+                css: "hidden-xs",
+                itemTemplate: function (_, item) {
+                    var $link = $("<a>").attr("class", "btn btn-primary btn-xs").attr("href", 'Detail/' + item.Id).text("Details");
+                    return $("<div>").append($link);
+                }
+            },
+            {
+                css: "visible-xs",
+                itemTemplate: function (_, item) {
+
+                    var $text = $("<p><h3>" + item.Sachtitel + " <small>" + item.Verfasser + "</small></h3> Mediennummer:" + item.Id + "</p>");
+                    var $link = $("<a>").attr("class", "btn btn-primary").attr("href", 'Detail/' + item.Id).text("Details");
+                    return $("<div>").append($text).append($link);
+                }
+            }
+        ]
+    });
+
+</script>
+
+
+<div class="alert alert-info" role="alert">
+    <h4 style="margin-top:5px;">Wie suche ich richtig</h4>
+    <ul>
+        <li>Titel, Verfasser, oder Schlagwort in das Feld „Medien Suche“ eingeben</li>
+        <li>Im nächsten Schritt kann die Suche in den Feldern „Art”, „Systematik”, „Sachtitel“, und „Verfasser“ verfeinert werden</li>
+        <li>Mit dem Löschen der Filter und Drücken der Enter Taste in obenstehenden Feldern wird die Suche schrittweise dem Initialen Ergebnis angepasst</li>
+        <li>M-Nr=Mediennummer // Art=Medienart // Sys=Systematik // V.=Verfügbar</li>
+    </ul>
+</div>

@@ -1,0 +1,21 @@
+﻿@model List<bibliothek.Models.Team>
+@{
+    ViewData["Title"] = "Team";
+}
+
+<h2>Team</h2>
+
+<div class="row equal">
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+                <img src="/Team/@item.Image" />
+                <div class="caption text-center">
+                    <h4>@item.Name</h4>
+                    @item.Description
+                </div>
+            </div>
+        </div>
+    }
+</div>

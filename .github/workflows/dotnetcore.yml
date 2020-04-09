@@ -38,9 +38,9 @@ jobs:
       run: dotnet publish ./bibliothek/bibliothek.csproj --configuration Release --output ./publish/
       
     - name: Download artifact
-      uses: actions/download-artifact@v1.0.0
+      uses: actions/upload-artifact@v1
       with:
         # Artifact name
         name: publish
         # Destination path
-        path: publish/*
+        path: ./publish/

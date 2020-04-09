@@ -1,4 +1,5 @@
 ﻿using bibliothek.Models;
+using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,13 @@ namespace bibliothek.Contracts
 {
     public class MySqlMediaRepository : IMediaRepository
     {
-        private string _connectionString;
+        private readonly ILogger<MySqlMediaRepository> _logger;
+        private readonly string _connectionString;
 
-        public MySqlMediaRepository()
+        public MySqlMediaRepository(ILogger<MySqlMediaRepository> logger)
         {
+            this._logger = logger;
+
             var connectionString = ConfigurationManager.AppSettings["ConnectionString"];
             this._connectionString = connectionString;
         }
@@ -44,8 +48,9 @@ namespace bibliothek.Contracts
                 {
                     connection.Open();
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
+                    this._logger.LogError(exception, "Cannot connect to database");
                     return item;
                 }
 
@@ -127,8 +132,9 @@ namespace bibliothek.Contracts
             {
                 item.PurchaseDate = (DateTime)reader["Einstelldatum"];
             }
-            catch
+            catch (Exception exception)
             {
+                this._logger.LogError(exception, "Read media error");
                 item.PurchaseDate = new DateTime(2000, 1, 1);
             }
 
@@ -153,8 +159,7 @@ namespace bibliothek.Contracts
 
                     var query = new StringBuilder();
 
-                    int id;
-                    if (int.TryParse(search, out id))
+                    if (int.TryParse(search, out int id))
                     {
                         query.AppendFormat(" Mediennummer = {0}", id);
                     }
@@ -189,7 +194,7 @@ namespace bibliothek.Contracts
                         }
                         query.Remove(0, 4);
                     }
-                    
+
                     query.Insert(0, "SELECT * FROM Medien WHERE");
                     //query.Append(" LIMIT 1000");
 
@@ -210,6 +215,7 @@ namespace bibliothek.Contracts
                 }
                 catch (Exception exception)
                 {
+                    this._logger.LogError(exception, "Read media error");
                 }
             }
 
@@ -241,8 +247,9 @@ namespace bibliothek.Contracts
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
+                    this._logger.LogError(exception, $"Cannot get media items of type {mediaType}");
                 }
             }
 
@@ -274,8 +281,9 @@ namespace bibliothek.Contracts
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
+                    this._logger.LogError(exception, "Cannot get new media items");
                 }
             }
 
@@ -293,19 +301,19 @@ namespace bibliothek.Contracts
                     connection.Open();
 
                     using (var command = new MySqlCommand("SELECT * FROM Medien WHERE ISBN IS NOT NULL AND ISBN <> '' ORDER BY Entlehnungen DESC LIMIT 500", connection))
+                    using (var reader = command.ExecuteReader())
                     {
-                        using (var reader = command.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
-                            {
-                                var item = this.ReadMediaItem(reader);
-                                items.Add(item);
-                            }
+                            var item = this.ReadMediaItem(reader);
+                            items.Add(item);
                         }
+
                     }
                 }
                 catch (Exception exception)
                 {
+                    this._logger.LogError(exception, "Cannot get popular media items");
                 }
             }
 
@@ -337,6 +345,7 @@ namespace bibliothek.Contracts
                 }
                 catch (Exception exception)
                 {
+                    this._logger.LogError(exception, $"Cannot get media items with id {id}");
                 }
             }
 
@@ -361,23 +370,22 @@ namespace bibliothek.Contracts
                     sb.Remove(0, 1);
 
                     using (var command = new MySqlCommand($"SELECT Mediennummer, ISBN FROM Medien WHERE ISBN IN ({sb.ToString()})", connection))
+                    using (var reader = command.ExecuteReader())
                     {
-                        using (var reader = command.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            var item = new AvailableMediaItem
                             {
-                                var item = new AvailableMediaItem
-                                {
-                                    Id = (int)reader["Mediennummer"],
-                                    ISBN = reader["ISBN"] as string
-                                };
-                                items.Add(item);
-                            }
+                                Id = (int)reader["Mediennummer"],
+                                ISBN = reader["ISBN"] as string
+                            };
+                            items.Add(item);
                         }
                     }
                 }
                 catch (Exception exception)
                 {
+                    this._logger.LogError(exception, $"Error on check isbn {string.Join(',', isbns)}");
                 }
             }
 

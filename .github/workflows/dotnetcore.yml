@@ -37,7 +37,7 @@ jobs:
     - name: Publish
       run: dotnet publish ./bibliothek/bibliothek.csproj --configuration Release --output ./publish/
       
-    - name: Download artifact
+    - name: Upload artifact
       uses: actions/upload-artifact@v1
       with:
         # Artifact name

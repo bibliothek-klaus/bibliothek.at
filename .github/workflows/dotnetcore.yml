@@ -24,6 +24,16 @@ jobs:
     - name: Build
       run: dotnet build ./bibliothek/bibliothek.csproj --configuration Release --no-restore
 
+  pack:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+
     - name: Publish
       run: dotnet publish ./bibliothek/bibliothek.csproj --configuration Release --no-restore --output ./publish/
       
@@ -31,6 +41,6 @@ jobs:
       uses: actions/download-artifact@v1.0.0
       with:
         # Artifact name
-        name: website
+        name: publish
         # Destination path
         path: ./publish/

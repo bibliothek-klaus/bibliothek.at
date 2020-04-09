@@ -1,4 +1,5 @@
 ﻿using bibliothek.Models;
+using Microsoft.Extensions.Logging;
 using Nager.AmazonProductAdvertising;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,13 @@ namespace bibliothek.Contracts
 {
     public class AmazonEnhanceMedia : IEnhanceMedia
     {
+        private readonly ILogger<AmazonEnhanceMedia> _logger;
+
+        public AmazonEnhanceMedia(ILogger<AmazonEnhanceMedia> logger)
+        {
+            this._logger = logger;
+        }
+
         public Tuple<string, List<SimilarBooks>> GetDetails(string isbn)
         {
             try
@@ -53,6 +61,7 @@ namespace bibliothek.Contracts
             }
             catch (Exception exception)
             {
+                this._logger.LogError(exception, $"Cannot get details for {isbn}");
                 return null;
             }
         }

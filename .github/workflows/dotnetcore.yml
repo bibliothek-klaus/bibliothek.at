@@ -22,4 +22,15 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build bibliothek/bibliothek.csproj --configuration Release --no-restore
+      run: dotnet build ./bibliothek/bibliothek.csproj --configuration Release --no-restore
+
+    - name: Publish
+      run: dotnet publish ./bibliothek/bibliothek.csproj --configuration Release --no-restore --output ./publish/
+      
+    - name: Download artifact
+      uses: actions/download-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: website
+        # Destination path
+        path: ./publish/

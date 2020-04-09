@@ -43,4 +43,4 @@ jobs:
         # Artifact name
         name: publish
         # Destination path
-        path: publish
+        path: publish/*

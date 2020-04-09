@@ -35,7 +35,7 @@ jobs:
         dotnet-version: 3.1.101
 
     - name: Publish
-      run: dotnet publish ./bibliothek/bibliothek.csproj --configuration Release --no-restore --output ./publish/
+      run: dotnet publish ./bibliothek/bibliothek.csproj --configuration Release --output ./publish/
       
     - name: Download artifact
       uses: actions/download-artifact@v1.0.0

@@ -22,15 +22,17 @@ namespace bibliothek.at.Controllers
 
         public ActionResult Index()
         {
-            var items = DateSystem.GetPublicHoliday(CountryCode.AT, DateTime.Today, DateTime.Today.AddMonths(6)).ToList();
+            var items = DateSystem.GetPublicHoliday(CountryCode.AT, DateTime.Today, DateTime.Today.AddMonths(8)).ToList();
 
             //Add custom holidays
-            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2018, 4, 1), "Ostersonntag", "Ostersonntag", CountryCode.AT));
-            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2018, 5, 20), "Pfingstsonntag", "Pfingstsonntag", CountryCode.AT));
-            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2018, 12, 24), "HL Abend", "HL Abend", CountryCode.AT));
-            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2018, 12, 31), "Silvester", "Silvester", CountryCode.AT));
-            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2019, 4, 21), "Ostersonntag", "Ostersonntag", CountryCode.AT));
-            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2019, 6, 9), "Pfingstsonntag", "Pfingstsonntag", CountryCode.AT));
+            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2020, 12, 24), "HL Abend", "HL Abend", CountryCode.AT));
+            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2020, 12, 31), "Silvester", "Silvester", CountryCode.AT));
+            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2021, 4, 4), "Ostersonntag", "Ostersonntag", CountryCode.AT));
+            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2021, 5, 23), "Pfingstsonntag", "Pfingstsonntag", CountryCode.AT));
+            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2021, 12, 24), "HL Abend", "HL Abend", CountryCode.AT));
+            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2021, 12, 31), "Silvester", "Silvester", CountryCode.AT));
+            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2022, 4, 17), "Ostersonntag", "Ostersonntag", CountryCode.AT));
+            items.Add(new Nager.Date.Model.PublicHoliday(new DateTime(2022, 6, 5), "Pfingstsonntag", "Pfingstsonntag", CountryCode.AT));
 
             ViewBag.PublicHolidays = items.OrderBy(o => o.Date).Where(o => o.Date >= DateTime.Now).Take(5);
 

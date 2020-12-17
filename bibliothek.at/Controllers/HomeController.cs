@@ -59,7 +59,7 @@ namespace bibliothek.at.Controllers
             //items.Add(new Team("Eva Cukrowicz", "Ehrenamtlicher Mitarbeiter", "CukrowiczE.jpg"));
             items.Add(new Team("Heidi Cukrowicz", "Ehrenamtlicher Mitarbeiter", "CukrowiczH.jpg"));
             items.Add(new Team("Maria Christa Faisst", "Ehrenamtlicher Mitarbeiter", "Faisst.jpg"));
-            items.Add(new Team("Annemarie Frick", "Ehrenamtlicher Mitarbeiter", "Frick.jpg"));
+            //items.Add(new Team("Annemarie Frick", "Ehrenamtlicher Mitarbeiter", "Frick.jpg"));
             items.Add(new Team("Gabriele Gell", "Ehrenamtlicher Mitarbeiter", "Gell.jpg"));
             items.Add(new Team("Evelyn Guger", "Ehrenamtlicher Mitarbeiter", "Guger.jpg"));
             //items.Add(new Team("Oli Halbeisen", "Ehrenamtlicher Mitarbeiter", "Halbeisen.jpg"));
@@ -80,7 +80,7 @@ namespace bibliothek.at.Controllers
             //items.Add(new Team("Anja Mittelberger", "Ehrenamtlicher Mitarbeiter", "MittelbergerAnja.jpg"));
             //items.Add(new Team("Patrik Primisser", "Ehrenamtlicher Mitarbeiter", "Primisser1.jpg"));
             items.Add(new Team("Barbara Fleisch", "Ehrenamtlicher Mitarbeiter", "Fleisch.jpg"));
-            items.Add(new Team("Helga Halbeisen-Maure", "Ehrenamtlicher Mitarbeiter", "HalbeisenMaurer.jpg"));
+            //items.Add(new Team("Helga Halbeisen-Maure", "Ehrenamtlicher Mitarbeiter", "HalbeisenMaurer.jpg"));
             items.Add(new Team("Doris Jenny", "Ehrenamtlicher Mitarbeiter", "Jenny.jpg"));
             items.Add(new Team("Martina Morscher", "Ehrenamtlicher Mitarbeiter", "MorscherM.jpg"));
             items.Add(new Team("Constantin Piber", "Ehrenamtlicher Mitarbeiter", "Piber.jpg"));

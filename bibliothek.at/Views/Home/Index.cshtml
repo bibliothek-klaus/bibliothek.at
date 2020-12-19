@@ -3,10 +3,11 @@
 }
 
 <h1><img src="/Content/logo.jpg" alt="Bibliothek Klaus-Weiler<" title="Bibliothek Klaus-Weiler<" /> Willkommen in der Bibliothek Klaus-Weiler</h1>
-Sie finden uns in der Mittelschule im Obergeschoß. Unser Sortiment reicht von Büchern, Zeitschriften, über DVD's bis hin zu Hörbüchern.<br />
+Sie finden uns in der Mittelschule im Obergeschoß. Unser Sortiment reicht von Büchern, Zeitschriften, über DVD's bis hin zu Hörbüchern.
+<br />
 
-<!--<-->@*div style="margin-top:50px; margin-bottom:80px;">
-    <h2>Die Bibliothek bleibt bis auf weiters geschlossen.<br /><small>Bücherservice, bis Mittwoch bestellen - am Donnerstag abholen</small></h2>
+<div style="margin-top:50px; margin-bottom:80px;">
+    <h2>Vom 24. Dez. bis einschließlich 17. Jän. 21 bleibt die Bibliothek geschlossen.<br />@*<small>Bücherservice, bis Mittwoch bestellen - am Donnerstag abholen</small></h2>
 
     Wegen der Schließung der Bibliothek auf unbestimmte Zeit bieten wir die Bestellung per Mail und Selbstabholung an.<br />
     <hr />
@@ -31,7 +32,7 @@ Sie finden uns in der Mittelschule im Obergeschoß. Unser Sortiment reicht von B
 
     Für die Schließzeit der Bibliothek werden keine Säumnisgebühren verrechnet.<br />
     Ihr Bibliotheksteam*@
-<!--</div>-->
+</div>
 
 <div id="carouselStart" class="carousel slide hidden-xs" data-ride="carousel">
     <!-- Indicators -->
@@ -49,17 +50,21 @@ Sie finden uns in der Mittelschule im Obergeschoß. Unser Sortiment reicht von B
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="~/Content/Inhalt.jpg" alt="...">
-            <div class="carousel-caption">
-                @*<a href="http://www.spiegel.de/bestseller" style="font-size:20px;">www.spiegel.de/bestseller</a>*@
-            </div>
+        <img src="~/Content/covid.jpg" alt="...">
+        <div class="carousel-caption">
+        <a href="http://www.spiegel.de/bestseller" style="font-size:20px;">www.spiegel.de/bestseller</a>
         </div>
-        <div class="item">
+    </div>
+        @*<div class="item">
             <img src="~/Content/Termin.jpg" alt="...">
             <div class="carousel-caption">
                 @Html.ActionLink("Veranstaltung", "Veranstaltungen", null, new { style = "color:#ffffff; font-size:40px;" })
             </div>
-        </div>
+        </div>*@
+        @*<div class="item">
+            <img src="~/Content/covid.jpg" alt="...">
+            <div class="carousel-caption"></div>
+        </div>*@
         <div class="item">
             <img src="/Content/Image1.jpg" alt="...">
             <div class="carousel-caption"></div>
@@ -117,10 +122,10 @@ Sie finden uns in der Mittelschule im Obergeschoß. Unser Sortiment reicht von B
                     <table class="table table-condensed" style="margin-bottom:0px;">
                         @foreach (var item in @ViewBag.PublicHolidays)
                         {
-                            <tr>
-                                <td style="font-size:11px; padding:2px;">@item.Date.ToString("dd.MM.yyyy")</td>
-                                <td style="font-size:11px; padding:2px;">@item.LocalName</td>
-                            </tr>
+                        <tr>
+                            <td style="font-size:11px; padding:2px;">@item.Date.ToString("dd.MM.yyyy")</td>
+                            <td style="font-size:11px; padding:2px;">@item.LocalName</td>
+                        </tr>
                         }
                     </table>
                 </td>

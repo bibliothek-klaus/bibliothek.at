@@ -16,44 +16,59 @@ namespace bibliothek.at.Contracts
     {
         public List<CalendarEvent> Get()
         {
-            GoogleCredential credential;
-            using (var stream = new FileStream(HostingEnvironment.MapPath(@"~/App_Data/googlecalendarcredential.json"), FileMode.Open, FileAccess.Read))
+            try
             {
-                credential = GoogleCredential.FromStream(stream).CreateScoped(CalendarService.Scope.Calendar);
-            }
-
-            // Create Google Calendar API service.
-            var service = new CalendarService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = "bibliothek.at Website",
-            });
-
-            var allowedCalendarId = ConfigurationManager.AppSettings["AllowedCalendarId"];
-            var calendarEvents = new List<CalendarEvent>();
-
-            var calendars = service.CalendarList.List().Execute().Items;
-            foreach (CalendarListEntry calendar in calendars)
-            {
-                if (calendar.Id != allowedCalendarId)
+                GoogleCredential credential;
+                using (var stream = new FileStream(HostingEnvironment.MapPath(@"~/App_Data/googlecalendarcredential.json"), FileMode.Open, FileAccess.Read))
                 {
-                    continue;
+                    credential = GoogleCredential.FromStream(stream).CreateScoped(CalendarService.Scope.Calendar);
                 }
 
-                var events = service.Events.List(calendar.Id).Execute();
-                var items = events.Items.Where(o => o.Start.DateTime >= DateTime.Now || o.End.DateTime <= DateTime.Now).Select(o =>
+                // Create Google Calendar API service.
+                var service = new CalendarService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = "bibliothek.at Website",
+                });
+
+                var allowedCalendarId = ConfigurationManager.AppSettings["AllowedCalendarId"];
+                var calendarEvents = new List<CalendarEvent>();
+
+                var calendars = service.CalendarList.List().Execute().Items;
+                foreach (CalendarListEntry calendar in calendars)
+                {
+                    if (calendar.Id != allowedCalendarId)
+                    {
+                        continue;
+                    }
+
+                    var events = service.Events.List(calendar.Id).Execute();
+                    var items = events.Items.Where(o => o.Start.DateTime >= DateTime.Now || o.End.DateTime <= DateTime.Now).Select(o =>
+                        new CalendarEvent
+                        {
+                            Date = o.Start.DateTime.Value,
+                            Title = o.Summary,
+                            Description = o.Description?.Replace("\n", @"<br \>"),
+                            Location = o.Location
+                        }).ToList();
+
+                    calendarEvents.AddRange(items);
+                }
+
+                return calendarEvents.OrderBy(o => o.Date).ToList();
+            }
+            catch (Exception exception)
+            {
+                return new List<CalendarEvent>
+                {
                     new CalendarEvent
                     {
-                        Date = o.Start.DateTime.Value,
-                        Title = o.Summary,
-                        Description = o.Description?.Replace("\n", @"<br \>"),
-                        Location = o.Location
-                    }).ToList();
-
-                calendarEvents.AddRange(items);
+                        Date = DateTime.Today,
+                        Title = "Fehler",
+                        Description = "Termine können nicht geladen werden "
+                    }
+                };
             }
-
-            return calendarEvents.OrderBy(o => o.Date).ToList();
         }
     }
 }
